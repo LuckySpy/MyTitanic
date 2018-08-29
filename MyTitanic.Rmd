@@ -1,0 +1,39 @@
+---
+title: "TitanicAnalysis"
+author: "Iliasspy"
+date: "August 29, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+#Setting working directory to be the current file
+setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+
+#Load the files for data analysis
+train <- read.csv("train.csv", stringsAsFactors = FALSE)
+test  <- read.csv("test.csv", stringsAsFactors = FALSE)
+gend  <- read.csv("gender_submission.csv", stringsAsFactors = FALSE)
+
+#Create the full initial dataset so that we can do data exploration
+test_survive <- merge(test, gend, by = "PassengerId")
+train        <- as.data.frame(train[c(1,3:12,2)])
+full_titanic <- rbind(test_survive,train)
+
+
+```
+
+
+```{r}
+
+```
+
